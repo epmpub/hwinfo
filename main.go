@@ -128,7 +128,7 @@ func main() {
 	// 	JSON PATH finder:		https://transform.tools/json-to-go
 	//  Author : Andy Hu
 	//  Date: 2023 / 2 / 15 07:59
-	//  email:327656031
+	//  email:327656021@qq.com
 
 	// some test case , use JSON path print
 	fmt.Printf("%T\n", data)
