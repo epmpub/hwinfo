@@ -110,48 +110,11 @@ type HWINFO []struct {
 	} `json:"children"`
 }
 
-type LSHW struct {
-	Businfo string `json:"businfo,omitempty"`
-	// Capabilities  *LSHWCAP    `json:"capabilities,omitempty"`
-	Capacity int64   `json:"capacity,omitempty"`
-	Children []*LSHW `json:"children,omitempty"`
-	Claimed  bool    `json:"claimed,omitempty"`
-	Class    string  `json:"class,omitempty"`
-	Clock    int     `json:"clock,omitempty"`
-	// Configuration *LSHWCONFIG `json:"configuration,omitempty"`
-	Date        string      `json:"date,omitempty"`
-	Description string      `json:"description,omitempty"`
-	Dev         string      `json:"dev,omitempty"`
-	Disabled    bool        `json:"disabled,omitempty"`
-	Handle      string      `json:"handle,omitempty"`
-	ID          string      `json:"id,omitempty"`
-	Logicalname interface{} `json:"logicalname,omitempty"`
-	Physid      string      `json:"physid,omitempty"`
-	Product     string      `json:"product,omitempty"`
-	Serial      string      `json:"serial,omitempty"`
-	Slot        string      `json:"slot,omitempty"`
-	Size        int64       `json:"size,omitempty"`
-	Units       string      `json:"units,omitempty"`
-	Vendor      string      `json:"vendor,omitempty"`
-	Version     string      `json:"version,omitempty"`
-	Width       int         `json:"width,omitempty"`
-}
-
-type address struct {
-	Street  string `json:"street"`          // 街道
-	Ste     string `json:"suite,omitempty"` // 单元（可以不存在）
-	City    string `json:"city"`            // 城市
-	State   string `json:"state"`           // 州/省
-	Zipcode string `json:"zipcode"`         // 邮编
-}
-
 func main() {
 	out, err := exec.Command("sudo", "lshw", "-json").Output()
 	if err != nil {
 		return
 	}
-
-	// fmt.Println(string(out))
 
 	data := HWINFO{}
 
@@ -159,6 +122,15 @@ func main() {
 	if err != nil {
 		return
 	}
+
+	//  useful website , find you want information JSON PATH and print
+	//	JSON to Struct:			https://jsonpathfinder.com/
+	// 	JSON PATH finder:		https://transform.tools/json-to-go
+	//  Author : Andy Hu
+	//  Date: 2023 / 2 / 15 07:59
+	//  email:327656031
+
+	// some test case , use JSON path print
 	fmt.Printf("%T\n", data)
 	fmt.Println(data[0].ID)
 	fmt.Println(data[0].Product)
