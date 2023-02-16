@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	mqtt_server "hwinfo/mqtt"
 	"os/exec"
 )
 
@@ -136,8 +137,10 @@ func main() {
 	fmt.Println(data[0].Product)
 	fmt.Println(data[0].Configuration.Boot)
 	fmt.Println(data[0].Children[0].Children[0].Vendor)
-	fmt.Println(data[0].Children[0].Children[1].Children[0].Vendor)
+	// fmt.Println(data[0].Children[0].Children[1].Children[0].Vendor)
 	fmt.Println(data[0].Children[0].Product)
 	fmt.Println(data[0].Children[0].Children[0].ID)
 	fmt.Println(data[0].Children[0].Children[1].Class)
+
+	mqtt_server.Setup("192.168.3.100", 1883)
 }
